@@ -6,42 +6,47 @@
 
     <groupId>org.bootcamp</groupId>
     <artifactId>total-insurance-aoprisan</artifactId>
-    <version>${project.maven.compiler.version}.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>TotalInsuranceOprisan</name>
     <description>Java Dev Bootcamp project</description>
+    <packaging>war</packaging>
 
     <properties>
+        <project.spring.boot.version>2.0.1.RELEASE</project.spring.boot.version>
         <project.apache.poi.version>3.17</project.apache.poi.version>
         <project.jackson.version>2.9.5</project.jackson.version>
-        <project.maven.compiler.version>3.1</project.maven.compiler.version>
         <project.java.version>1.8</project.java.version>
-        <project.spring.boot.version>2.0.1.RELEASE</project.spring.boot.version>
+        <project.maven.war.plugin.version>2.6</project.maven.war.plugin.version>
+        <project.maven.compiler.version>3.1</project.maven.compiler.version>
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${project.spring.boot.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>${project.spring.boot.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${project.apache.poi.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${project.jackson.version}</version>
         </dependency>
-
     </dependencies>
+
 
     <build>
         <plugins>
@@ -54,8 +59,33 @@
                     <target>${project.java.version}</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${project.maven.war.plugin.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>maven-adro-java-dev-bootcamp-snapshot-local</id>
+            <name>Snapshots</name>
+            <url>https://artifactory-uw2.adobeitc.com/artifactory/maven-adro-java-dev-bootcamp-snapshot</url>
+        </snapshotRepository>
+        <repository>
+            <id>maven-adro-java-dev-bootcamp-releases</id>
+            <name>Releases</name>
+            <url>https://artifactory-uw2.adobeitc.com/artifactory/maven-adro-java-dev-bootcamp-release</url>
+        </repository>
+    </distributionManagement>
 
 </project>

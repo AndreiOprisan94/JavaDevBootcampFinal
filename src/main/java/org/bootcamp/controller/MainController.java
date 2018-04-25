@@ -20,7 +20,7 @@ public class MainController {
         this.service = service;
     }
 
-    private static final String HELLO_MESSAGE = "<h1>Congratulations You Did It!</h1>";
+    private static final String HELLO_MESSAGE = "<h1>Congratulations You Did It!!!</h1>";
 
     @GetMapping("/")
     public String sayHello() {
